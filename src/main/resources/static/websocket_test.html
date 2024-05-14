@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket STOMP Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
+</head>
+<body>
+    <h2>WebSocket STOMP Test Client</h2>
+    <button onclick="connect()">Connect</button>
+    <button onclick="disconnect()" disabled>Disconnect</button>
+    <script>
+        var stompClient = null;
+
+        function setConnected(connected) {
+            document.querySelector("button[onclick='connect()']").disabled = connected;
+            document.querySelector("button[onclick='disconnect()']").disabled = !connected;
+        }
+
+        function connect() {
+            // var socket = new SockJS('http://localhost:8080/measurement-stream'); 
+            var socket = new SockJS('http://localhost:8080/measurement-stream?sensor_id=urn:dev:ops:16961-WXT530-T2840151'); 
+
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function (frame) {
+                setConnected(true);
+                console.log('Connected: ' + frame);
+                stompClient.subscribe('/topic/weather', function (weatherData) {
+                    console.log("Received:", weatherData.body);
+                });
+            });
+        }
+
+        function disconnect() {
+            if (stompClient !== null) {
+                stompClient.disconnect();
+            }
+            setConnected(false);
+            console.log("Disconnected");
+        }
+    </script>
+</body>
+</html>
