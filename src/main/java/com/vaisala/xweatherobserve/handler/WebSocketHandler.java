@@ -59,6 +59,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
             
         } catch (JsonProcessingException e) {
 
+            logger.error("Error processing JSON", e);
+
             // Handle any exceptions that occur while processing the JSON
             throw new ApplicationException(HttpStatus.INTERNAL_SERVER_ERROR, "Error processing JSON: " + e.getMessage());
         }

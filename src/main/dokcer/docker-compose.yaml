@@ -1,0 +1,75 @@
+# version: '3.8'
+
+# services:
+#   app:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: app
+#     depends_on:
+#       - db
+#     environment:
+#       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+#       - SPRING_DATASOURCE_USERNAME=postgres
+#       - SPRING_DATASOURCE_PASSWORD=postgres
+#       - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+#       - WEATHER_API_URL=${WEATHER_API_URL}
+#       - WEATHER_API_KEY=${WEATHER_API_KEY}
+#       - SENSOR_ID=${SENSOR_ID}
+#       - WEATHER_URL=${WEATHER_URL}
+#       - WEATHER_HISTORY_ENDPOINT=${WEATHER_HISTORY_ENDPOINT}
+#     ports:
+#       - "8080:8080"
+#     volumes:
+#       - .:/app
+          
+#   db:
+#     image: 'postgres:14.5'
+#     container_name: db
+#     environment:
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_PASSWORD=postgres
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - pgdata:/var/lib/postgresql/data
+
+
+version: '3.8' # Updated version
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+      - WEATHER_API_URL=${WEATHER_API_URL}
+      - WEATHER_API_KEY=${WEATHER_API_KEY}
+      - SENSOR_ID=${SENSOR_ID}
+      - WEATHER_URL=${WEATHER_URL}
+      - WEATHER_HISTORY_ENDPOINT=${WEATHER_HISTORY_ENDPOINT}
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+
+  db:
+    image: 'postgres:14.5'
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

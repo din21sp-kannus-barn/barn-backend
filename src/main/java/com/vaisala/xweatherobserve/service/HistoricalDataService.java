@@ -28,7 +28,6 @@ public class HistoricalDataService {
 
     private static final Logger logger = LoggerFactory.getLogger(HistoricalDataService.class);
     private static final double BASE_TEMPERATURE = 5.0;
-    // private static final double THRESHOLD_TEMPERATURE = 4.0;
     private int consecutiveDaysAboveBaseTemp = 0;
 
     // A list to store the daily average temperatures
@@ -91,6 +90,9 @@ public class HistoricalDataService {
             .average()
             .orElse(Double.NaN);
 
+        logger.info("Calculated true daily average temperature: {}", trueDailyAverage);
+
+
         // Reset the list for the next day
         dailyAvgTemperatures.clear();
 
@@ -102,10 +104,14 @@ public class HistoricalDataService {
 
         if (consecutiveDaysAboveBaseTemp >= 10) {
                 double thermalSum = dailyAverageTemperature - BASE_TEMPERATURE;
+
+                logger.info("Thermal sum to be saved: {}", thermalSum);
+
     
                 ThermalSum latestWeatherData = thermalSumRepo.findTopByOrderByTimestampDesc();
                 if (latestWeatherData == null) {
                     latestWeatherData = new ThermalSum();
+                    latestWeatherData.setThermalSum(0);
                 }
                 latestWeatherData.setThermalSum(latestWeatherData.getThermalSum() + thermalSum);
                 thermalSumRepo.save(latestWeatherData);

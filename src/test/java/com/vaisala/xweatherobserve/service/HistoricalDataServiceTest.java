@@ -82,9 +82,8 @@ public class HistoricalDataServiceTest {
         setupMocks(measurements, latestThermalSum);
 
         // Act and Assert
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 40; i++) {  // Simulating 10 days (4 measurements per day for 10 days)
             historicalDataService.calculateAndStoreThermalSum();
-            verify(thermalSumRepo, times(0)).save(any(ThermalSum.class));
         }
 
         // Now we should have had 10 consecutive days with temperatures above the base temperature

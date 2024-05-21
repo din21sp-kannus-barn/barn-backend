@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.imageio.ImageIO;
+// import javax.imageio.ImageIO;
 
 import com.vaisala.xweatherobserve.exception.ApplicationException;
 import com.vaisala.xweatherobserve.model.dto.WeatherSnapshot;
@@ -17,8 +17,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
+// import java.awt.image.BufferedImage;
+// import java.io.File;
 import java.time.LocalDateTime;
 
 // This service is responsible for handling weather updates and sending them to the client.
@@ -32,8 +32,8 @@ public class StreamDataService {
     @Autowired
     private SimpMessagingTemplate template;
 
-    @Autowired
-    private ImageGenerator imageGenerator;
+    // @Autowired
+    // private ImageGenerator imageGenerator;
 
     // Autowired ThermalSumRepo for fetching the latest thermal sum from the database
     @Autowired
@@ -73,12 +73,12 @@ public class StreamDataService {
         // Send the payload as a message
         template.convertAndSend("/topic/weather", payload);
 
-        // Generate an image from the WeatherSnapshot
-        BufferedImage image = imageGenerator.generateImage(ourdata);
+        // // Generate an image from the WeatherSnapshot
+        // BufferedImage image = imageGenerator.generateImage(ourdata);
 
-        // Write the image to a file
-        File outputFile = new File("weather-image.png");
-        ImageIO.write(image, "PNG", outputFile);
+        // // Write the image to a file
+        // File outputFile = new File("weather-image.png");
+        // ImageIO.write(image, "PNG", outputFile);
     }
 
 }
