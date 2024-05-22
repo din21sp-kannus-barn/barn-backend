@@ -66,7 +66,7 @@ public class StreamDataService {
         Map<String, Object> payload = new HashMap<>();
         
         // Add the weather data, timestamp, and message number to the payload
-        payload.put("weather data", ourdata);
+        payload.put("weather", ourdata);
         payload.put("timestamp", LocalDateTime.now());
         payload.put("messageNumber", messageNumber.getAndIncrement());
         
