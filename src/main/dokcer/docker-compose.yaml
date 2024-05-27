@@ -35,10 +35,10 @@
 #       - pgdata:/var/lib/postgresql/data
 
 
-version: '3.8' # Updated version
-
+# version: '3.8'
 services:
   app:
+    image: 'kannus-backend:latest'
     build:
       context: .
       dockerfile: Dockerfile
