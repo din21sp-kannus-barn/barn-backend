@@ -29,9 +29,7 @@ public class SecurityConfig {
                                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                                                 .requestMatchers("/ws/**", "/health", "/.well-known/acme-challenge/*").permitAll()
-                                                // .anyRequest().authenticated())
-                                                .anyRequest().permitAll()) // Temporarily allow all requests
-
+                                                .anyRequest().authenticated())
                                 .sessionManagement(
                                                 sessionManagement -> sessionManagement
                                                                 .sessionCreationPolicy(
@@ -48,9 +46,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // configuration.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
-        configuration.setAllowedOriginPatterns(Collections.singletonList("*"));
-
+        configuration.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
         configuration.setAllowedMethods(Collections.singletonList("*"));
         configuration.setAllowCredentials(true);
 
