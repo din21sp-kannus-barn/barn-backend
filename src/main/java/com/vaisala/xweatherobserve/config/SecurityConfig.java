@@ -2,7 +2,7 @@ package com.vaisala.xweatherobserve.config;
 
 
 import java.util.Arrays;
-import java.util.Collections;
+// import java.util.Collections;
 
 
 import org.springframework.context.annotation.Bean;
@@ -50,7 +50,10 @@ public class SecurityConfig {
         // configuration.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
         configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:3000", "https://barnprojectjava.azurewebsites.net"));
 
-        configuration.setAllowedMethods(Collections.singletonList("*"));
+        // configuration.setAllowedMethods(Collections.singletonList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Specify methods explicitly
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
