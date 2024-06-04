@@ -28,8 +28,10 @@ public class SecurityConfig {
                                 .csrf(csrf -> csrf.disable())
                                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                                                .requestMatchers("/ws/**", "/weather-image.png").permitAll()
-                                                .anyRequest().authenticated())
+                                                .requestMatchers("/ws/**", "/health", "/.well-known/acme-challenge/*").permitAll()
+                                                // .anyRequest().authenticated())
+                                                .anyRequest().permitAll()) // Temporarily allow all requests
+
                                 .sessionManagement(
                                                 sessionManagement -> sessionManagement
                                                                 .sessionCreationPolicy(
@@ -46,7 +48,9 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
+        // configuration.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
+        configuration.setAllowedOriginPatterns(Collections.singletonList("*"));
+
         configuration.setAllowedMethods(Collections.singletonList("*"));
         configuration.setAllowCredentials(true);
 

@@ -6,6 +6,7 @@ import com.vaisala.xweatherobserve.exception.ApplicationException;
 import com.vaisala.xweatherobserve.model.constant.ParameterType;
 import com.vaisala.xweatherobserve.model.dto.Measurement;
 import com.vaisala.xweatherobserve.model.dto.WeatherSnapshot;
+// import com.vaisala.xweatherobserve.service.RealTimeWeatherApiService;
 import com.vaisala.xweatherobserve.service.WeatherUpdateEvent;
 
 import org.slf4j.Logger;
@@ -15,7 +16,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
-import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -44,7 +44,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     // Method called when a text message is received
     @Override
     protected void handleTextMessage(@NonNull WebSocketSession session, @NonNull TextMessage message) {
-        logger.info("Received : {}", message.getPayload());
+        // logger.info("Received : {}", message.getPayload());
         try {
             // Convert the payload into an array of Measurement objects
             Measurement[] measurements = objectMapper.readValue(message.getPayload(), Measurement[].class);
@@ -112,10 +112,4 @@ public class WebSocketHandler extends TextWebSocketHandler {
         throw new ApplicationException(HttpStatus.INTERNAL_SERVER_ERROR, "Transport error: " + exception.getMessage());
     }
 
-    // Method called when a WebSocket session is closed
-    @Override
-    public void afterConnectionClosed(@NonNull WebSocketSession session, @NonNull CloseStatus status) {
-
-        logger.info("Connection closed. Status: {}", status);
-    }
 }
