@@ -1,6 +1,7 @@
 package com.vaisala.xweatherobserve.config;
 
 
+import java.util.Arrays;
 import java.util.Collections;
 
 
@@ -46,7 +47,9 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
+        // configuration.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
+        configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:3000", "https://barnprojectjava.azurewebsites.net"));
+
         configuration.setAllowedMethods(Collections.singletonList("*"));
         configuration.setAllowCredentials(true);
 

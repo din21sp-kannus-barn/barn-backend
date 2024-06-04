@@ -15,7 +15,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(@NonNull StompEndpointRegistry registry) {
         registry.addEndpoint("/ws") // Register the "/ws" endpoint
-              .setAllowedOrigins("http://localhost:3000") // Allowing requests from this origin
+              .setAllowedOrigins("http://localhost:3000", "https://barnprojectjava.azurewebsites.net") // Allowing requests from this origin
             .withSockJS(); 
     }
 
