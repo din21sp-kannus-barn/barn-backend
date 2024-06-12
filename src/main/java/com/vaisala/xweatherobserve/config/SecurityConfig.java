@@ -48,7 +48,7 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         // configuration.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3000"));
-        configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:3000", "https://barnprojectjava.azurewebsites.net", "https://tiiny.host", "https://kannus.fi", "https://www.kpedu.fi/navetta"));
+        configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:3000", "https://barnprojectjava.azurewebsites.net", "https://tiiny.host", "https://kannus.fi", "https://www.kpedu.fi/navetta", "https://www.kpedu.fi"));
 
         // configuration.setAllowedMethods(Collections.singletonList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Specify methods explicitly

@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(@NonNull CorsRegistry registry) {
         registry.addMapping("/**") // Allow requests to all endpoints
-                .allowedOriginPatterns("http://localhost:3000", "https://barnprojectjava.azurewebsites.net", "https://tiiny.host", "https://kannus.fi", "https://www.kpedu.fi/navetta") // Allow requests from this origin
+                .allowedOriginPatterns("http://localhost:3000", "https://barnprojectjava.azurewebsites.net", "https://tiiny.host", "https://kannus.fi", "https://www.kpedu.fi/navetta", "https://www.kpedu.fi") // Allow requests from this origin
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS") // Allow these HTTP methods
                 .allowedHeaders("*") 
                 .allowCredentials(true); 
